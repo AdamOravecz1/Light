@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bie4a0vljhkt0"]
+
+[ext_resource type="Texture2D" uid="uid://8d6c4l36jdvf" path="res://sprites/Bullet_icon.png" id="1_jc31p"]
+
+[node name="Bullet_Icon" type="Node2D"]
+
+[node name="BulletIcon" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_jc31p")

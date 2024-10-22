@@ -1,0 +1,267 @@
+[gd_scene load_steps=16 format=3 uid="uid://iemtpsahfvt5"]
+
+[ext_resource type="Script" path="res://scripts/wand.gd" id="1_gukvv"]
+[ext_resource type="Texture2D" uid="uid://ka3ixbiuslmn" path="res://sprites/Boss_Wand.png" id="1_jvbr8"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="3_8b4es"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qyn32"]
+radius = 1.41421
+
+[sub_resource type="Animation" id="Animation_c60jt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.5, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/ShotingPoint/PointLight2D:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2D/ShotingPoint/Light:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fcpkv"]
+resource_name = "hand"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/ShotingPoint/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/ShotingPoint/Light:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 1, 0), Color(1, 0, 1, 0.45098)]
+}
+
+[sub_resource type="Animation" id="Animation_kaiex"]
+resource_name = "shoot"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1), Vector2(1.5, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/ShotingPoint/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/ShotingPoint/Light:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 1, 0), Color(1, 0, 1, 0.45098)]
+}
+
+[sub_resource type="Animation" id="Animation_2t2fo"]
+resource_name = "spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D/ShotingPoint/PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D/ShotingPoint/Light:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 1, 0), Color(1, 0, 1, 0.490196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvaqb"]
+_data = {
+"RESET": SubResource("Animation_c60jt"),
+"hand": SubResource("Animation_fcpkv"),
+"shoot": SubResource("Animation_kaiex"),
+"spawn": SubResource("Animation_2t2fo")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7urxi"]
+atlas = ExtResource("1_jvbr8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dypu4"]
+atlas = ExtResource("1_jvbr8")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vl2b"]
+atlas = ExtResource("1_jvbr8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a17tl"]
+atlas = ExtResource("1_jvbr8")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g51s"]
+atlas = ExtResource("1_jvbr8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ejugv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7urxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dypu4")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_5vl2b")
+}, {
+"duration": 2.4,
+"texture": SubResource("AtlasTexture_a17tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g51s")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 3.0
+}]
+
+[node name="Wand" type="Area2D"]
+rotation = 3.14159
+script = ExtResource("1_gukvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qyn32")
+debug_color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yvaqb")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.5, 1)
+sprite_frames = SubResource("SpriteFrames_ejugv")
+animation = &"shoot"
+
+[node name="ShotingPoint" type="Marker2D" parent="AnimatedSprite2D"]
+unique_name_in_owner = true
+position = Vector2(-1.5, -12)
+
+[node name="Light" type="Sprite2D" parent="AnimatedSprite2D/ShotingPoint"]
+self_modulate = Color(1, 0, 1, 0)
+position = Vector2(-1.52588e-05, -3.8147e-06)
+rotation = 3.14159
+texture = ExtResource("3_8b4es")
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D/ShotingPoint"]
+position = Vector2(7.27596e-12, 0)
+color = Color(1, 0, 1, 0.505882)
+energy = 0.0
+texture = ExtResource("3_8b4es")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

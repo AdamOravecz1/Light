@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bk33325nm2y4e"]
+
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_6onbp"]
+[ext_resource type="Texture2D" uid="uid://uffig87wclo1" path="res://sprites/Laser.png" id="1_g86o6"]
+[ext_resource type="AudioStream" uid="uid://d0j41scbpr41l" path="res://sound/MagicProjectile.wav" id="3_e76ml"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="4_lnexa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4qh13"]
+radius = 2.0
+
+[node name="Laser" type="Area2D"]
+z_index = 1
+collision_layer = 3
+script = ExtResource("1_6onbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4qh13")
+
+[node name="Laser" type="Sprite2D" parent="."]
+position = Vector2(-2, 1)
+texture = ExtResource("1_g86o6")
+
+[node name="MagicSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_e76ml")
+autoplay = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-2.5, -9.53674e-07)
+scale = Vector2(0.59375, 0.4375)
+color = Color(1, 0.517647, 1, 1)
+texture = ExtResource("4_lnexa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=3 uid="uid://ojdmygylnuc"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_75lcs"]
+[ext_resource type="Texture2D" uid="uid://bel7m7o0vr2r5" path="res://sprites/Player_3.png" id="2_cjupy"]
+[ext_resource type="PackedScene" uid="uid://c03mnpi84qmb4" path="res://scenes/valaška.tscn" id="3_ei7m5"]
+[ext_resource type="PackedScene" uid="uid://og6gn0m658as" path="res://scenes/pistol.tscn" id="4_dvqvc"]
+[ext_resource type="PackedScene" uid="uid://4kpoia68ryk5" path="res://scenes/blunderbus.tscn" id="6_u0lhl"]
+[ext_resource type="AudioStream" uid="uid://jsual78p7jfl" path="res://sound/coin.wav" id="7_13gyt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6afo"]
+size = Vector2(13, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3qoj"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vkp3"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11gol"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f70j2"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd6q5"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5u1ao"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jdw7e"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5gxe"]
+atlas = ExtResource("2_cjupy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02p08"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vkp3")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_11gol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f70j2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bd6q5")
+}],
+"loop": false,
+"name": &"dodge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5u1ao")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jdw7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5gxe")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksjew"]
+size = Vector2(15, 26)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(0, -8)
+collision_mask = 7
+script = ExtResource("1_75lcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_v6afo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_02p08")
+animation = &"run"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_ksjew")
+debug_color = Color(0.997558, 0, 0.16327, 0.42)
+
+[node name="PivotPointMele" type="Marker2D" parent="."]
+
+[node name="Valaska" parent="PivotPointMele" instance=ExtResource("3_ei7m5")]
+visible = false
+
+[node name="Blunderbus" parent="." instance=ExtResource("6_u0lhl")]
+visible = false
+
+[node name="Pistol" parent="." instance=ExtResource("4_dvqvc")]
+rotation = 0.0128595
+
+[node name="Bought" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_13gyt")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="end_of_animation" from="PivotPointMele/Valaska" to="." method="_on_valaska_end_of_animation"]
+[connection signal="end_of_animation" from="Blunderbus" to="." method="_on_blunderbus_end_of_animation"]
+[connection signal="end_of_animation" from="Pistol" to="." method="_on_gun_end_of_animation"]
+[connection signal="end_of_animation" from="Pistol" to="." method="_on_pistol_end_of_animation"]

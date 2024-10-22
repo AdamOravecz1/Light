@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxfai7ajewkcy"]
+
+[ext_resource type="Texture2D" uid="uid://ckipc1kg1fsy3" path="res://sprites/Backround_menu_2.png" id="1_6s1o3"]
+[ext_resource type="Script" path="res://scripts/death.gd" id="1_euxpu"]
+[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="2_a8aro"]
+[ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="3_f083n"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tnmmu"]
+light_mode = 1
+
+[node name="Death" type="Control"]
+material = SubResource("CanvasItemMaterial_tnmmu")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_euxpu")
+
+[node name="BackroundMenu2" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("1_6s1o3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -28.0
+offset_right = 62.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="Restart" type="Button" parent="MarginContainer/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a8aro")
+theme_override_fonts/font = ExtResource("3_f083n")
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a8aro")
+theme_override_fonts/font = ExtResource("3_f083n")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a8aro")
+theme_override_fonts/font = ExtResource("3_f083n")
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+use_parent_material = true
+layout_mode = 0
+offset_left = -189.0
+offset_top = -130.0
+offset_right = 219.0
+offset_bottom = -66.0
+theme_override_colors/font_color = Color(0.847059, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_f083n")
+theme_override_font_sizes/font_size = 64
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

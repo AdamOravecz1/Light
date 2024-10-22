@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://cr7on3q6hc7fa"]
+
+[ext_resource type="Texture2D" uid="uid://cvk1g1iexhfq5" path="res://sprites/Small_Altar.png" id="1_tyctt"]
+[ext_resource type="Script" path="res://scripts/small_altar.gd" id="1_yldlx"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="2_kkrey"]
+[ext_resource type="Texture2D" uid="uid://d32fwph5upceo" path="res://sprites/Small_Altar_flame.png" id="3_v4pj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_th2lu"]
+size = Vector2(5, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4wpv"]
+atlas = ExtResource("3_v4pj5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix568"]
+atlas = ExtResource("3_v4pj5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l32st"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4wpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix568")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SmallAltar" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_yldlx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_th2lu")
+
+[node name="SmallAltar" type="Sprite2D" parent="."]
+texture = ExtResource("1_tyctt")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(4.67578, 4.67578)
+energy = 0.7
+blend_mode = 2
+texture = ExtResource("2_kkrey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-2.38419e-07, -14)
+scale = Vector2(0.625, 0.625)
+sprite_frames = SubResource("SpriteFrames_l32st")
+autoplay = "default"
+frame_progress = 0.733319

@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://bm255hjg0t0y0"]
+
+[ext_resource type="Texture2D" uid="uid://dwoajvc4mqyl1" path="res://sprites/fire.png" id="1_cs6cw"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="2_fu1tb"]
+
+[sub_resource type="GDScript" id="GDScript_1omoa"]
+script/source = "extends Area2D
+
+var damage_per_second = 1.0
+var enemies_in_area = []
+
+func _ready():
+	set_process(true)
+
+func _process(delta):
+	for enemy in enemies_in_area:
+		if enemy and enemy.has_method(\"on_fire\"):
+			enemy.on_fire(damage_per_second * delta)
+
+func _on_body_entered(body):
+	if body.has_method(\"on_fire\"):
+		enemies_in_area.append(body)
+	
+func _on_body_exited(body):
+	if body in enemies_in_area:
+		enemies_in_area.erase(body)
+
+
+func _on_timer_timeout():
+	queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idid7"]
+atlas = ExtResource("1_cs6cw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yj8u3"]
+atlas = ExtResource("1_cs6cw")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5owlf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idid7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yj8u3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_esv1u"]
+radius = 64.0
+
+[node name="Fire" type="Area2D"]
+z_index = -2
+collision_layer = 3
+collision_mask = 3
+script = SubResource("GDScript_1omoa")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_5owlf")
+autoplay = "default"
+frame_progress = 0.0177385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_esv1u")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(3.8147e-06, -0.999998)
+scale = Vector2(5.29688, 5.29688)
+texture = ExtResource("2_fu1tb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

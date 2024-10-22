@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8o34qyboyrv3"]
+
+[ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_5up0b"]
+[ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="2_3x0t8"]
+[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="2_k63pd"]
+[ext_resource type="Texture2D" uid="uid://ckipc1kg1fsy3" path="res://sprites/Backround_menu_2.png" id="2_ssdvu"]
+[ext_resource type="Texture2D" uid="uid://degkgsf4tneg3" path="res://sprites/Currency.png" id="4_jx4ba"]
+[ext_resource type="Texture2D" uid="uid://tyqjxlvuyy23" path="res://sprites/Valaska_2.png" id="4_l58y6"]
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5up0b")
+
+[node name="BackroundMenu2" type="Sprite2D" parent="."]
+position = Vector2(640, 359)
+scale = Vector2(1.18, 1.644)
+texture = ExtResource("2_ssdvu")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -82.5
+offset_right = 70.0
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="FullScreen" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_k63pd")
+theme_override_fonts/font = ExtResource("2_3x0t8")
+text = "Full Screen"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3x0t8")
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("4_jx4ba")
+theme_override_icons/grabber_highlight = ExtResource("4_jx4ba")
+theme_override_icons/grabber_disabled = ExtResource("4_jx4ba")
+theme_override_icons/tick = ExtResource("4_l58y6")
+value = 10.0
+
+[node name="Music" type="CheckBox" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_3x0t8")
+button_pressed = true
+text = "Music"
+
+[node name="Resolutions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_k63pd")
+item_count = 3
+selected = 2
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+popup/item_1/text = "1600x900"
+popup/item_1/id = 1
+popup/item_2/text = "1280x720"
+popup/item_2/id = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_k63pd")
+theme_override_fonts/font = ExtResource("2_3x0t8")
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/FullScreen" to="." method="_on_full_screen_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volume" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/Music" to="." method="_on_music_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/Resolutions" to="." method="_on_resolutions_item_selected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

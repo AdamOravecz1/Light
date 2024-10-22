@@ -1,0 +1,83 @@
+[gd_scene load_steps=13 format=3 uid="uid://bljfeiwfmdep4"]
+
+[ext_resource type="Script" path="res://scripts/broken_altar.gd" id="1_h2rmv"]
+[ext_resource type="Texture2D" uid="uid://bjp8o8ko7ynyt" path="res://sprites/Broken_Altar.png" id="1_khm3e"]
+[ext_resource type="Texture2D" uid="uid://b2cysrshkt1kg" path="res://sprites/Broken_Altar_Fire.png" id="2_urjdr"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="3_wdujy"]
+[ext_resource type="PackedScene" uid="uid://b5l7nm22qv6uc" path="res://scenes/interaction_area.tscn" id="5_alb6g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa5f3"]
+size = Vector2(10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anopo"]
+atlas = ExtResource("2_urjdr")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0na2"]
+atlas = ExtResource("2_urjdr")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li8ax"]
+atlas = ExtResource("2_urjdr")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qx58"]
+atlas = ExtResource("2_urjdr")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dwdsd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anopo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m0na2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li8ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qx58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fa86p"]
+radius = 25.2982
+
+[node name="BrokenAltar" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_h2rmv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_xa5f3")
+
+[node name="BrokenAltar" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_khm3e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_dwdsd")
+autoplay = "default"
+frame_progress = 0.591141
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -26)
+scale = Vector2(6.65625, 6.65625)
+energy = 0.7
+shadow_enabled = true
+texture = ExtResource("3_wdujy")
+
+[node name="InteractionArea" parent="." instance=ExtResource("5_alb6g")]
+position = Vector2(0, -8)
+action_name = "shop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_fa86p")

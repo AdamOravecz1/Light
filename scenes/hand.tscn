@@ -1,0 +1,104 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbm2g1qrda7gc"]
+
+[ext_resource type="Texture2D" uid="uid://c0mephnjg4uyy" path="res://sprites/Boss_Hand.png" id="1_7ycmd"]
+[ext_resource type="Script" path="res://scripts/hand.gd" id="1_odca6"]
+[ext_resource type="AudioStream" uid="uid://bne2jewtknqrr" path="res://sound/HandSlam.wav" id="3_axkcm"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="4_a5deo"]
+
+[sub_resource type="Animation" id="Animation_1fx4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slapper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slam:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y1nvs"]
+resource_name = "slap"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Slapper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 41)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Slam:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfyap"]
+_data = {
+"RESET": SubResource("Animation_1fx4e"),
+"slap": SubResource("Animation_y1nvs")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hryj7"]
+radius = 9.0
+height = 62.0
+
+[node name="Hand" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_odca6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gfyap")
+}
+
+[node name="Slapper" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slapper"]
+position = Vector2(0, 2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hryj7")
+
+[node name="BossHand" type="Sprite2D" parent="Slapper"]
+z_index = 1
+position = Vector2(-1, 0)
+texture = ExtResource("1_7ycmd")
+
+[node name="Slam" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_axkcm")
+
+[node name="Light" type="Sprite2D" parent="."]
+self_modulate = Color(0.0941176, 0.0941176, 0.0941176, 0.733333)
+position = Vector2(8.9407e-07, 45.5)
+scale = Vector2(1.8125, 0.65625)
+texture = ExtResource("4_a5deo")
+
+[connection signal="body_entered" from="Slapper" to="." method="_on_slapper_body_entered"]

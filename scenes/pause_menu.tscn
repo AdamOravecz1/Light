@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://c780htiop57yl"]
+
+[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="1_1ktid"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_gdv28"]
+[ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="2_2hgu8"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_83pu0"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hjfxe"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gruft"]
+light_mode = 1
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gdv28")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.0
+offset_top = -37.0
+offset_right = 51.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+material = SubResource("CanvasItemMaterial_83pu0")
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer"]
+material = SubResource("CanvasItemMaterial_hjfxe")
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1ktid")
+theme_override_fonts/font = ExtResource("2_2hgu8")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+material = SubResource("CanvasItemMaterial_gruft")
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1ktid")
+theme_override_fonts/font = ExtResource("2_2hgu8")
+text = "Quit
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

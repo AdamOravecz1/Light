@@ -1,0 +1,251 @@
+[gd_scene load_steps=13 format=3 uid="uid://og6gn0m658as"]
+
+[ext_resource type="Script" path="res://scripts/pistol.gd" id="1_3iudg"]
+[ext_resource type="Texture2D" uid="uid://bc8115wp8j2y1" path="res://sprites/Gun2.png" id="2_0eqrf"]
+[ext_resource type="Texture2D" uid="uid://ukt7u7jyv2o1" path="res://sprites/Light.png" id="3_d22i8"]
+[ext_resource type="AudioStream" uid="uid://bndo6pvnyde6x" path="res://sound/376060__morganpurkis__mouth-gun.wav" id="3_l2wjl"]
+[ext_resource type="AudioStream" uid="uid://clng58rd5jdjl" path="res://sound/387484__cosmicembers__empty-gun-failure-to-fire-trigger-pull-3.wav" id="4_41aib"]
+[ext_resource type="AudioStream" uid="uid://bdnt8p1bcjaum" path="res://sound/RelodeSound.wav" id="5_8jalt"]
+
+[sub_resource type="Animation" id="Animation_yt22u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Gun2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shoot:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EmptyShoot:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Relode:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Marker2D/Gun2/ShotingPoint/PointLight2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bih4l"]
+resource_name = "empty"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.358268, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EmptyShoot:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wag45"]
+resource_name = "relode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Gun2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [3.14159, 9.42478]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Relode:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hpn17"]
+resource_name = "shoot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.420369, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shoot:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Gun2/ShotingPoint/PointLight2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7eak"]
+_data = {
+"RESET": SubResource("Animation_yt22u"),
+"empty": SubResource("Animation_bih4l"),
+"relode": SubResource("Animation_wag45"),
+"shoot": SubResource("Animation_hpn17")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bkiup"]
+radius = 1.41421
+
+[node name="Pistol" type="Area2D"]
+z_index = 1
+rotation = 0.176787
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3iudg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_p7eak")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8.99986, 0.0502862)
+shape = SubResource("CircleShape2D_bkiup")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Gun2" type="Sprite2D" parent="Marker2D"]
+position = Vector2(-11.9998, 0.0670483)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("2_0eqrf")
+
+[node name="ShotingPoint" type="Marker2D" parent="Marker2D/Gun2"]
+unique_name_in_owner = true
+position = Vector2(5.00069, 0.0264838)
+
+[node name="PointLight2D" type="PointLight2D" parent="Marker2D/Gun2/ShotingPoint"]
+visible = false
+visibility_layer = 2
+energy = 5.0
+blend_mode = 2
+texture = ExtResource("3_d22i8")
+height = 4.0
+
+[node name="Shoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_l2wjl")
+
+[node name="EmptyShoot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_41aib")
+
+[node name="Relode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_8jalt")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

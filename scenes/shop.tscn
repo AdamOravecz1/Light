@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://cpy65cornk21i"]
+
+[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="1_7mkfp"]
+[ext_resource type="Texture2D" uid="uid://ckipc1kg1fsy3" path="res://sprites/Backround_menu_2.png" id="1_8jxht"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="1_qoa5f"]
+[ext_resource type="Texture2D" uid="uid://8d6c4l36jdvf" path="res://sprites/Bullet_icon.png" id="2_g17u8"]
+[ext_resource type="Texture2D" uid="uid://drhey4qjlprnt" path="res://sprites/B_Bullet_icon.png" id="4_ro8h7"]
+[ext_resource type="Texture2D" uid="uid://btnxtt4ltjlql" path="res://sprites/Molotov.png" id="5_ukjuf"]
+[ext_resource type="Texture2D" uid="uid://cr6lk30agwo03" path="res://sprites/Health.png" id="6_fe471"]
+[ext_resource type="Theme" uid="uid://be5ujr2o0ekp8" path="res://green_button.tres" id="7_b7q5r"]
+[ext_resource type="Texture2D" uid="uid://cvk1g1iexhfq5" path="res://sprites/Small_Altar.png" id="8_evgy8"]
+[ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="8_ndmvs"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fnsvw"]
+light_mode = 1
+
+[node name="Shop" type="Control"]
+material = SubResource("CanvasItemMaterial_fnsvw")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qoa5f")
+
+[node name="BackroundMenu2" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("1_8jxht")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -37.5
+offset_right = 73.0
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="PistolAmmo" type="Button" parent="MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme = ExtResource("1_7mkfp")
+text = "                 "
+icon = ExtResource("2_g17u8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="BlunderbussAmmo" type="Button" parent="MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_7mkfp")
+text = "                 "
+icon = ExtResource("4_ro8h7")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Molotov" type="Button" parent="MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme = ExtResource("1_7mkfp")
+text = "                 "
+icon = ExtResource("5_ukjuf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Health" type="Button" parent="MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme = ExtResource("1_7mkfp")
+text = "                 "
+icon = ExtResource("6_fe471")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Light" type="Button" parent="MarginContainer/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme = ExtResource("1_7mkfp")
+text = "                 "
+icon = ExtResource("8_evgy8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer2"]
+use_parent_material = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ndmvs")
+text = "1       "
+
+[node name="Label2" type="Label" parent="MarginContainer2/HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ndmvs")
+text = "2       "
+
+[node name="Label3" type="Label" parent="MarginContainer2/HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ndmvs")
+text = "5       "
+
+[node name="Label4" type="Label" parent="MarginContainer2/HBoxContainer2"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("8_ndmvs")
+text = "3       "
+
+[node name="Label5" type="Label" parent="MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "5"
+
+[node name="Next" type="Button" parent="."]
+use_parent_material = true
+layout_mode = 0
+offset_left = 248.0
+offset_top = 59.0
+offset_right = 430.0
+offset_bottom = 135.0
+theme = ExtResource("7_b7q5r")
+theme_override_fonts/font = ExtResource("8_ndmvs")
+text = "Next wave"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/PistolAmmo" to="." method="_on_pistol_ammo_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/BlunderbussAmmo" to="." method="_on_blunderbuss_ammo_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Molotov" to="." method="_on_molotov_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Light" to="." method="_on_light_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
