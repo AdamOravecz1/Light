@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://3qd3s06p0gio"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_oyp7m"]
-[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="2_6sx0p"]
 [ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="2_h24j6"]
 [ext_resource type="Texture2D" uid="uid://ckipc1kg1fsy3" path="res://sprites/Backround_menu_2.png" id="2_j5q8x"]
+[ext_resource type="Theme" uid="uid://dgw01b1411d5d" path="res://default.tres" id="3_eop2v"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -39,29 +39,24 @@ layout_mode = 2
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_6sx0p")
+theme = ExtResource("3_eop2v")
 theme_override_fonts/font = ExtResource("2_h24j6")
 text = "Play"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_6sx0p")
+theme = ExtResource("3_eop2v")
 theme_override_fonts/font = ExtResource("2_h24j6")
 text = "Option"
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_6sx0p")
+theme = ExtResource("3_eop2v")
 theme_override_fonts/font = ExtResource("2_h24j6")
 text = "Quit"
-
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = " "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_5up0b"]
 [ext_resource type="FontFile" uid="uid://cpojoq47dln4s" path="res://font/PixelOperator.ttf" id="2_3x0t8"]
-[ext_resource type="Theme" uid="uid://ntv0fo8iahfr" path="res://default.tres" id="2_k63pd"]
 [ext_resource type="Texture2D" uid="uid://ckipc1kg1fsy3" path="res://sprites/Backround_menu_2.png" id="2_ssdvu"]
+[ext_resource type="Theme" uid="uid://dgw01b1411d5d" path="res://default.tres" id="3_50uur"]
 [ext_resource type="Texture2D" uid="uid://degkgsf4tneg3" path="res://sprites/Currency.png" id="4_jx4ba"]
 [ext_resource type="Texture2D" uid="uid://tyqjxlvuyy23" path="res://sprites/Valaska_2.png" id="4_l58y6"]
 
@@ -41,7 +41,7 @@ layout_mode = 2
 [node name="FullScreen" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_k63pd")
+theme = ExtResource("3_50uur")
 theme_override_fonts/font = ExtResource("2_3x0t8")
 text = "Full Screen"
 
@@ -67,7 +67,6 @@ text = "Music"
 
 [node name="Resolutions" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_k63pd")
 item_count = 3
 selected = 2
 popup/item_0/text = "1920x1080"
@@ -80,7 +79,7 @@ popup/item_2/id = 2
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_k63pd")
+theme = ExtResource("3_50uur")
 theme_override_fonts/font = ExtResource("2_3x0t8")
 text = "Back"
 
